@@ -23,10 +23,13 @@ RUN pip install --no-cache-dir \
     Jinja2 \
     itsdangerous \
     click \
-    Flask-JSON 
+    Flask-JSON \
+    requests[socks] \
+    fake_useragent \
+    beautifulsoup4 \
+    tenacity
 
 WORKDIR /app
 ENV PYTHONPATH /app
 
-USER uwsgi
 CMD uwsgi --ini uwsgi.ini

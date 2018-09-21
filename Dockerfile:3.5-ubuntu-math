@@ -23,10 +23,13 @@ RUN pip install --no-cache-dir \
     itsdangerous \
     click \
     Flask-JSON \
-    opencv-python
+    opencv-python \
+    requests[socks] \
+    fake_useragent \
+    beautifulsoup4 \
+    tenacity
 
 WORKDIR /app
 ENV PYTHONPATH /app
 
-USER www-data
 CMD uwsgi --ini uwsgi.ini
