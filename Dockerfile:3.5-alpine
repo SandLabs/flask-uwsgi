@@ -1,0 +1,32 @@
+FROM python:3.5-alpine
+
+RUN apk add --update --no-cache \
+    gcc \
+    python3-dev \
+    build-base \
+    linux-headers \
+    pcre-dev \
+    musl-dev \
+    uwsgi \
+    uwsgi-python3
+
+ENV PYTHONBUFFERED 1
+RUN pip install --no-cache-dir \
+    pip \
+    setuptools \
+    wheel \
+    uWSGI \
+    raven[flask] \
+    Flask \
+    MarkupSafe \
+    Werkzeug \
+    Jinja2 \
+    itsdangerous \
+    click \
+    Flask-JSON 
+
+WORKDIR /app
+ENV PYTHONPATH /app
+
+USER uwsgi
+CMD uwsgi --ini uwsgi.ini

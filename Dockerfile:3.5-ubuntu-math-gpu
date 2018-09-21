@@ -1,0 +1,32 @@
+FROM tensorflow/tensorflow:latest-gpu-py3
+
+RUN apt-get -y update -qq && apt-get install -y \
+    build-essential \
+    python3-dev \
+    python3-pip \
+    python-opencv \
+    libpcre3 \
+    libpcre3-dev \
+    uwsgi
+
+ENV PYTHONBUFFERED 1
+RUN pip install --no-cache-dir \
+    pip \
+    setuptools \
+    wheel \
+    uWSGI \
+    raven[flask] \
+    Flask \
+    MarkupSafe \
+    Werkzeug \
+    Jinja2 \
+    itsdangerous \
+    click \
+    Flask-JSON \
+    opencv-python
+
+WORKDIR /app
+ENV PYTHONPATH /app
+
+USER www-data
+CMD uwsgi --ini uwsgi.ini
