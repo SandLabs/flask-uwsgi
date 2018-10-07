@@ -19,6 +19,7 @@ RUN pip install --no-cache-dir \
     raven[flask] \
     sentry-sdk \
     ddtrace \
+    healthcheck \
     Flask \
     MarkupSafe \
     Werkzeug \
