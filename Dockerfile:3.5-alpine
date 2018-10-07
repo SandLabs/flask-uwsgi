@@ -21,6 +21,7 @@ RUN pip install --no-cache-dir \
     uWSGI \
     raven[flask] \
     sentry-sdk \
+    ddtrace \
     Flask \
     MarkupSafe \
     Werkzeug \
