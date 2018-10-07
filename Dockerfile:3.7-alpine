@@ -1,4 +1,4 @@
-FROM python:3.5-alpine
+FROM python:3.7-alpine
 
 RUN apk add --update --no-cache \
     gcc \
@@ -40,9 +40,6 @@ RUN pip install --no-cache-dir \
     flask-sqlacodegen \
     Flask-WebPack \
     Flask-Caching
-
-WORKDIR /uwsgi-plugins
-RUN uwsgi --build-plugin https://github.com/Datadog/uwsgi-dogstatsd
 
 WORKDIR /app
 ENV PYTHONPATH /app

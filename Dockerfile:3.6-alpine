@@ -8,7 +8,10 @@ RUN apk add --update --no-cache \
     pcre-dev \
     musl-dev \
     uwsgi \
-    uwsgi-python3
+    uwsgi-python3 \
+    git \
+    postgresql-client \
+    postgresql-dev
 
 ENV PYTHONBUFFERED 1
 RUN pip install --no-cache-dir \
@@ -17,6 +20,7 @@ RUN pip install --no-cache-dir \
     wheel \
     uWSGI \
     raven[flask] \
+    sentry-sdk \
     Flask \
     MarkupSafe \
     Werkzeug \
@@ -27,9 +31,18 @@ RUN pip install --no-cache-dir \
     requests[socks] \
     fake_useragent \
     beautifulsoup4 \
-    tenacity
+    tenacity \
+    Flask-SQLAlchemy \
+    psycopg2 \
+    psycopg2-binary \
+    SQLAlchemy \
+    SQLAlchemy-Utils \
+    flask-sqlacodegen \
+    Flask-WebPack \
+    Flask-Caching
 
 WORKDIR /app
 ENV PYTHONPATH /app
 
-CMD uwsgi --ini uwsgi.ini
+USER uwsgi
+CMD uwsgi --plugin-dir /uwsgi-plugins --ini uwsgi.ini
